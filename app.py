@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect # 変更 #変更
-from flask_sqlalchemy import SQLAlchemy # 追加
+from flask import Flask, render_template, request, redirect
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
@@ -33,6 +33,12 @@ def delete(id):
     db.session.commit()
     return redirect('/')
 
+@app.route("/change/<int:id>")
+def change(id):
+    tasks = Todo.query.all()
+    change_task = Todo.query.get(id)
+    delete(id)
+    return render_template("change.html", task=change_task)
 
 if __name__ == "__main__":
     app.run(debug=True)
