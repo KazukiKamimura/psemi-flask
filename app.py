@@ -6,6 +6,8 @@ app = Flask(__name__)
 # 以下追加
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///todo.db"
 db = SQLAlchemy(app)
+
+
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
@@ -17,6 +19,7 @@ def index():
     tasks = Todo.query.all()
     return render_template("index.html", tasks=tasks)
 
+
 @app.route("/create", methods=["POST"])
 def create():
     title = request.form.get("title")
@@ -26,6 +29,7 @@ def create():
     db.session.commit()
     return redirect("/")
 
+
 @app.route('/delete/<int:id>')
 def delete(id):
     delete_task = Todo.query.get(id)
@@ -33,12 +37,14 @@ def delete(id):
     db.session.commit()
     return redirect('/')
 
+
 @app.route("/change/<int:id>")
 def change(id):
     tasks = Todo.query.all()
     change_task = Todo.query.get(id)
     delete(id)
     return render_template("change.html", task=change_task)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
