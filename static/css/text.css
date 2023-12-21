@@ -1,0 +1,27 @@
+/* 参考サイト(26番を改変して使用)
+    https://saruwakakun.com/html-css/reference/box */
+.announce-box {
+    position: relative;
+    margin: 2em 0;
+    padding: 1em 1em;
+    border: solid 3px #95ccff;
+    border-radius: 8px;
+}
+
+.announce-box .box-title {
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 10px;
+    padding: 0 9px;
+    line-height: 1;
+    font-size: 23px;
+    background: #FFF;
+    color: #95ccff;
+    font-weight: bold;
+}
+
+.announce-box p {
+    margin: 0;
+    padding: 0;
+}
